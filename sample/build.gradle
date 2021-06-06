@@ -1,0 +1,28 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 27
+        applicationId "kludges.sample"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation ANDROIDX
+    implementation KOTLIN_KTX
+    implementation KOTLIN_STDLIB
+    implementation MATERIAL
+    implementation CONSTRAINT_LAYOUT
+}
