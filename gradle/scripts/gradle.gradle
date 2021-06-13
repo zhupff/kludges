@@ -11,12 +11,3 @@ dependencies {
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
-
-task createGradleInfo() {
-    StringBuilder sb = new StringBuilder()
-        .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
-        .append("package kludge.common\n")
-        .append("internal const val GROUP = \"${GROUP}\"\n")
-        .append("internal const val VERSION = \"${VERSION}\"\n")
-    new File("${projectDir.path}/src/main/kotlin/kludge/common/GradleInfo.kt").text = sb.toString()
-}

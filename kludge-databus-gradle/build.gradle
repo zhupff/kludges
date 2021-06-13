@@ -4,8 +4,8 @@ apply from: rootProject.file("gradle/scripts/publish.gradle")
 task createInfo() {
     StringBuilder sb = new StringBuilder()
         .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
-        .append("package kludge.common\n")
+        .append("package kludge.databus\n")
         .append("internal const val GROUP = \"${project.group}\"\n")
         .append("internal const val VERSION = \"${project.version}\"\n")
-    new File("${projectDir.path}/src/main/kotlin/kludge/common/Info.kt").text = sb.toString()
+    new File("${projectDir.path}/src/main/kotlin/kludge/databus/Info.kt").text = sb.toString()
 }

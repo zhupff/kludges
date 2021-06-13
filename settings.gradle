@@ -6,3 +6,6 @@ include ':kludge-api'
 
 include ':kludge-common-gradle'
 include ':kludge-common-module'
+
+include ':kludge-databus-gradle'
+include ':kludge-databus-module'
