@@ -1,0 +1,22 @@
+apply plugin: "kotlin"
+apply plugin: "kotlin-kapt"
+
+dependencies {
+    implementation gradleApi()
+    compileOnly BUILD_GRADLE
+    implementation AUTO_SERVICE
+    kapt AUTO_SERVICE
+    compileOnly project(":kludge-api")
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+task createGradleInfo() {
+    StringBuilder sb = new StringBuilder()
+        .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
+        .append("package kludge.common\n")
+        .append("internal const val GROUP = \"${GROUP}\"\n")
+        .append("internal const val VERSION = \"${VERSION}\"\n")
+    new File("${projectDir.path}/src/main/kotlin/kludge/common/GradleInfo.kt").text = sb.toString()
+}

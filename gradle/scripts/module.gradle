@@ -1,0 +1,25 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 27
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation ANDROIDX
+    implementation KOTLIN_KTX
+    implementation KOTLIN_STDLIB
+}

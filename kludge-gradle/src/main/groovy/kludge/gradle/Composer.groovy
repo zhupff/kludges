@@ -56,7 +56,7 @@ final class Composer {
             this.context = new ComposeContext(this.project)
         }
 
-        def protected dispatchClosure(String name, Closure closure) {
+        def final protected dispatchClosure(String name, Closure closure) {
             closureDelegates.get(name).delegate(closure, context)
         }
 

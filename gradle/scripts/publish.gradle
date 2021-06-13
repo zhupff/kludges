@@ -2,8 +2,8 @@ Properties localProperties = new Properties()
 localProperties.load(rootProject.file('local.properties').newDataInputStream())
 
 group = GROUP
+version = VERSION
 if ("true".equalsIgnoreCase(localProperties.getProperty("LOCAL_DEBUG"))) {
-    version = localProperties.getProperty("LOCAL_VERSION")
     apply plugin: "maven"
     uploadArchives {
         repositories {
@@ -21,6 +21,5 @@ if ("true".equalsIgnoreCase(localProperties.getProperty("LOCAL_DEBUG"))) {
         }
     }
 } else {
-    version = VERSION
     apply plugin: "com.github.dcendents.android-maven"
 }
