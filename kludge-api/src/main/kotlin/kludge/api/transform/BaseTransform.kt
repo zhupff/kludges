@@ -77,4 +77,7 @@ abstract class BaseTransform(
         transformers.forEach { bytes = it.handleJarClass(classPath, classBytes) }
         return bytes
     }
+
+    protected fun convertToClassName(name: String): String = name
+        .replace("/", ".").replace("\\", ".").removePrefix(".")
 }

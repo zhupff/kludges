@@ -19,9 +19,9 @@ open class LibTransform(
     override fun handleDirInput(input: DirectoryInput, outputProvider: TransformOutputProvider, context: TransformContext) {
         Logln.v("${i(name)} handleDirInput, input=${i(input.name)}")
         val desDir = outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, Format.DIRECTORY)
+        val srcDirPath = input.file.absolutePath
+        val desDirPath = desDir.absolutePath
         if (context.isIncremental) {
-            val srcDirPath = input.file.absolutePath
-            val desDirPath = desDir.absolutePath
             input.changedFiles.forEach { (file, status) ->
                 Logln.v("${i(file.name)}'s status=${i(status)}")
                 when (status) {
@@ -36,7 +36,8 @@ open class LibTransform(
                                 file.createNewFile()
                             }
                             if (file.isClassFile()) {
-                                val bytes = handleDirClass(file.path, file.readBytes())
+                                val className = convertToClassName(file.absolutePath.removePrefix(srcDirPath))
+                                val bytes = handleDirClass(className, file.readBytes())
                                 file.writeBytes(bytes)
                             }
                             FileUtils.copyFile(file, desFile)
@@ -54,7 +55,8 @@ open class LibTransform(
                     it.isClassFile()
                 }
                 .forEach {
-                    val bytes = handleDirClass(it.path, it.readBytes())
+                    val className = convertToClassName(it.absolutePath.removePrefix(srcDirPath))
+                    val bytes = handleDirClass(className, it.readBytes())
                     it.writeBytes(bytes)
                 }
             FileUtils.copyDirectory(input.file, desDir)

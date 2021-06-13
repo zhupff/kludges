@@ -1,5 +1,6 @@
 package kludge.api.closure
 
+import com.google.auto.service.AutoService
 import kludge.api.ComposeContext
 import kludge.api.common.Logger
 import kludge.api.common.Logln
@@ -17,9 +18,10 @@ import java.util.*
  *     }
  * }
  */
+@AutoService(BaseClosureDelegate::class)
 open class LoggerClosureDelegate : BaseClosureDelegate() {
 
-    override val closureName: String = "logger"
+    override val name: String = "logger"
 
     var minLevel: String? = null
 

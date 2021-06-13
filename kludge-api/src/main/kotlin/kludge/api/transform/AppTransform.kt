@@ -43,7 +43,7 @@ open class AppTransform(
                         jarFile.getInputStream(jarEntry).use { ins ->
                             var bytes = ins.readBytes()
                             if (jarEntry.name.endsWith(".class")) {
-                                bytes = handleJarClass(jarEntry.name, bytes)
+                                bytes = handleJarClass(convertToClassName(jarEntry.name), bytes)
                             }
                             jos.putNextEntry(ZipEntry(jarEntry.name))
                             jos.write(bytes)

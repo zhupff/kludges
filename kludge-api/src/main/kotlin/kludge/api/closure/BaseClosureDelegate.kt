@@ -10,7 +10,7 @@ import kludge.api.ComposeContext
 abstract class BaseClosureDelegate {
 
     /** 代理的闭包名。 **/
-    abstract val closureName: String
+    abstract val name: String
 
     /**
      * 代理闭包。
