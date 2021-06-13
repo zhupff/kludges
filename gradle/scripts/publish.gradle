@@ -1,0 +1,26 @@
+Properties localProperties = new Properties()
+localProperties.load(rootProject.file('local.properties').newDataInputStream())
+
+group = GROUP
+if ("true".equalsIgnoreCase(localProperties.getProperty("LOCAL_DEBUG"))) {
+    version = localProperties.getProperty("LOCAL_VERSION")
+    apply plugin: "maven"
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: localProperties.getProperty("LOCAL_NEXUS_URL")) {
+                    authentication(
+                        userName: localProperties.getProperty("LOCAL_NEXUS_USERNAME"),
+                        password: localProperties.getProperty("LOCAL_NEXUS_PASSWORD")
+                    )
+                }
+                pom.groupId = project.group
+                pom.artifactId = project.name
+                pom.version = project.version
+            }
+        }
+    }
+} else {
+    version = VERSION
+    apply plugin: "com.github.dcendents.android-maven"
+}

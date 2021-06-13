@@ -1,2 +1,5 @@
 rootProject.name = "kludges"
 include ':sample'
+
+include ':kludge-gradle'
+include ':kludge-api'

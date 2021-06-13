@@ -8,7 +8,7 @@ android {
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 27
-        applicationId "kludges.sample"
+        applicationId "kludge.sample"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

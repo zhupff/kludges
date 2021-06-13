@@ -1,0 +1,14 @@
+apply plugin: "kotlin"
+apply plugin: "kotlin-kapt"
+
+dependencies {
+    implementation gradleApi()
+    implementation BUILD_GRADLE
+    implementation AUTO_SERVICE
+    kapt AUTO_SERVICE
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+apply from: rootProject.file("gradle/scripts/publish.gradle")

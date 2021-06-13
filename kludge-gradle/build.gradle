@@ -1,0 +1,12 @@
+apply plugin: "groovy"
+
+dependencies {
+    implementation BUILD_GRADLE
+    implementation gradleApi()
+    implementation project(":kludge-api")
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+apply from: rootProject.file("gradle/scripts/publish.gradle")

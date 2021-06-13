@@ -1,8 +1,10 @@
-package kludges.sample;
+package kludge.sample;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+
+import kludge.sample.R;
 
 public class MainActivity extends FragmentActivity {
 
