@@ -21,17 +21,17 @@ interface ClassTransformer {
     /**
      * 根据类名筛选需要处理的 .class 文件，默认[filterDirClass]和[filterJarClass]都使用此方法。
      */
-    fun filterClass(classPath: String): Boolean = false
+    fun filterClass(className: String): Boolean = false
 
     /**
      * 根据类名筛选需要过滤的[DirectoryInput]里的 .class 文件。
      */
-    fun filterDirClass(classPath: String): Boolean = filterClass(classPath)
+    fun filterDirClass(className: String): Boolean = filterClass(className)
 
     /**
      * 根据类名筛选需要过滤的[JarInput]里的 .class 文件。
      */
-    fun filterJarClass(classPath: String): Boolean = filterClass(classPath)
+    fun filterJarClass(className: String): Boolean = filterClass(className)
 
     /**
      * 处理 .class 文件，默认[transformDirClass]和[transformJarClass]都使用此方法。
@@ -51,8 +51,8 @@ interface ClassTransformer {
     /**
      * 处理来自[DirectoryInput]里的 .class 文件，满足[filterDirClass]的会进行[transformDirClass]。
      */
-    fun handleDirClass(classPath: String, classBytes: ByteArray): ByteArray =
-        if (filterDirClass(classPath))
+    fun handleDirClass(className: String, classBytes: ByteArray): ByteArray =
+        if (filterDirClass(className))
             transformDirClass(classBytes)
         else
             classBytes
@@ -60,8 +60,8 @@ interface ClassTransformer {
     /**
      * 处理来自[DirectoryInput]里的.class文件，满足[filterJarClass]的会进行[transformJarClass]。
      */
-    fun handleJarClass(classPath: String, classBytes: ByteArray): ByteArray =
-        if (filterJarClass(classPath))
+    fun handleJarClass(className: String, classBytes: ByteArray): ByteArray =
+        if (filterJarClass(className))
             transformJarClass(classBytes)
         else
             classBytes

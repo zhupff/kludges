@@ -4,6 +4,7 @@ import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.utils.FileUtils
 import kludge.api.common.Logln
+import kludge.api.common.asClassName
 import kludge.api.common.deleteIfExists
 import kludge.api.common.i
 import java.io.File
@@ -43,7 +44,7 @@ open class AppTransform(
                         jarFile.getInputStream(jarEntry).use { ins ->
                             var bytes = ins.readBytes()
                             if (jarEntry.name.endsWith(".class")) {
-                                bytes = handleJarClass(convertToClassName(jarEntry.name), bytes)
+                                bytes = handleJarClass(jarEntry.name.asClassName(), bytes)
                             }
                             jos.putNextEntry(ZipEntry(jarEntry.name))
                             jos.write(bytes)

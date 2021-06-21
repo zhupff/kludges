@@ -11,6 +11,8 @@ fun CharSequence?.upperCase(): String = this.toString().toUpperCase(Locale.getDe
 
 fun CharSequence?.lowerCase(): String = this.toString().toLowerCase(Locale.getDefault())
 
+fun CharSequence?.asClassName(): String = this.toString().replace("/", ".").replace("\\", ".").removePrefix(".")
+
 fun File?.isExists(): Boolean = this != null && this.exists()
 
 fun File?.isNotExists(): Boolean = this != null && !this.exists()

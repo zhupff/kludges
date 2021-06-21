@@ -66,18 +66,15 @@ abstract class BaseTransform(
             .getContentLocation(input.name, input.contentTypes, input.scopes, Format.JAR))
     }
 
-    protected open fun handleDirClass(classPath: String, classBytes: ByteArray): ByteArray {
+    protected open fun handleDirClass(className: String, classBytes: ByteArray): ByteArray {
         var bytes = classBytes
-        transformers.forEach { bytes = it.handleDirClass(classPath, classBytes) }
+        transformers.forEach { bytes = it.handleDirClass(className, classBytes) }
         return bytes
     }
 
-    protected open fun handleJarClass(classPath: String, classBytes: ByteArray): ByteArray {
+    protected open fun handleJarClass(className: String, classBytes: ByteArray): ByteArray {
         var bytes = classBytes
-        transformers.forEach { bytes = it.handleJarClass(classPath, classBytes) }
+        transformers.forEach { bytes = it.handleJarClass(className, classBytes) }
         return bytes
     }
-
-    protected fun convertToClassName(name: String): String = name
-        .replace("/", ".").replace("\\", ".").removePrefix(".")
 }

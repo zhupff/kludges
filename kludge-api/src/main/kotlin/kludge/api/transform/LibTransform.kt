@@ -27,17 +27,17 @@ open class LibTransform(
                 when (status) {
                     Status.ADDED, Status.CHANGED -> {
                         val desFile = File(file.absolutePath.replace(srcDirPath, desDirPath))
-                        if (desFile.isFile) {
-                            val desFileParent = file.parentFile
-                            if (desFileParent != null && !desFileParent.mkdirs() && !desFileParent.isDirectory) {
-                                throw Exception("Can't create directory(${desFileParent.absolutePath}")
-                            }
-                            if (file.isNotExists()) {
-                                file.createNewFile()
+                        if (file.isFile) {
+                            if (!desFile.isNotExists()) {
+                                desFile.parentFile?.let { desParentFile ->
+                                    if (!desParentFile.mkdirs() && !desParentFile.isDirectory) {
+                                        throw Exception("Can't create directory(${desParentFile.absolutePath}.")
+                                    }
+                                } ?: throw Exception("File(${desFile})'s parent file is null.")
+                                desFile.createNewFile()
                             }
                             if (file.isClassFile()) {
-                                val className = convertToClassName(file.absolutePath.removePrefix(srcDirPath))
-                                val bytes = handleDirClass(className, file.readBytes())
+                                val bytes = handleDirClass(file.absolutePath.removePrefix(srcDirPath).asClassName(), file.readBytes())
                                 file.writeBytes(bytes)
                             }
                             FileUtils.copyFile(file, desFile)
@@ -55,7 +55,7 @@ open class LibTransform(
                     it.isClassFile()
                 }
                 .forEach {
-                    val className = convertToClassName(it.absolutePath.removePrefix(srcDirPath))
+                    val className = it.absolutePath.removePrefix(srcDirPath).asClassName()
                     val bytes = handleDirClass(className, it.readBytes())
                     it.writeBytes(bytes)
                 }
