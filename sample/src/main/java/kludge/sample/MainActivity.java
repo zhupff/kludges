@@ -1,16 +1,20 @@
 package kludge.sample;
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.os.Bundle;
 
-import kludge.sample.R;
+import kludge.common.component.activity.BaseBindingActivity;
+import kludge.sample.databinding.MainActivityBinding;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseBindingActivity<MainActivityBinding> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView();
+    }
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.main_activity;
     }
 }

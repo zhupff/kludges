@@ -25,4 +25,6 @@ dependencies {
     implementation KOTLIN_STDLIB
     implementation MATERIAL
     implementation CONSTRAINT_LAYOUT
+
+    implementation project(":kludge-common-module")
 }
