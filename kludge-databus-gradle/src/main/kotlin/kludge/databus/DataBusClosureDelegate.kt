@@ -6,7 +6,7 @@ import kludge.api.closure.BaseClosureDelegate
 
 /**
  * Author: Zhupf
- * Description: kludge-databus 相关模块gradle接入
+ * Description: kludge-databus 相关模块gradle接入。
  *
  * Composer.compose {
  *     databus {}

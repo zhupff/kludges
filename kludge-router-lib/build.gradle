@@ -1,0 +1,2 @@
+apply from: rootProject.file("gradle/scripts/lib.gradle")
+apply from: rootProject.file("gradle/scripts/publish.gradle")
