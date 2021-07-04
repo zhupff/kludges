@@ -5,4 +5,9 @@ package kludge.router
  * Description: 页面路由器。
  */
 object Router {
+
+    @JvmStatic
+    fun init() {
+        RouteTable.init()
+    }
 }

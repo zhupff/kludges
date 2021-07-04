@@ -6,6 +6,7 @@ dependencies {
     compileOnly BUILD_GRADLE
     implementation AUTO_SERVICE
     kapt AUTO_SERVICE
+    implementation JAVA_POET
     compileOnly project(":kludge-api")
 }
 
