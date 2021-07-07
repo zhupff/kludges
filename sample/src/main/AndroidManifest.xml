@@ -3,10 +3,12 @@
     package="kludge.sample">
 
     <application
-        android:label="@string/app_name"
+        android:allowBackup="true"
         android:icon="@drawable/logo"
-        android:theme="@style/KludgeTheme"
-        android:allowBackup="true">
+        android:label="@string/app_name"
+        android:theme="@style/KludgeTheme">
+        <activity android:name=".databus.DataBusSampleActivity2"></activity>
+        <activity android:name=".databus.DataBusSampleActivity1" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
