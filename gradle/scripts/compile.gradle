@@ -4,11 +4,11 @@ apply plugin: "kotlin-kapt"
 dependencies {
     compileOnly gradleApi()
     compileOnly BUILD_GRADLE
-    api AUTO_SERVICE
+    implementation AUTO_SERVICE
     kapt AUTO_SERVICE
+    implementation JAVA_POET
+    compileOnly project(":kludge-api")
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
-
-apply from: rootProject.file("gradle/scripts/publish.gradle")
