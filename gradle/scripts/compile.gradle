@@ -7,7 +7,7 @@ dependencies {
     implementation AUTO_SERVICE
     kapt AUTO_SERVICE
     implementation JAVA_POET
-    compileOnly project(":kludge-api")
+    implementation project(":kludge-api")
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

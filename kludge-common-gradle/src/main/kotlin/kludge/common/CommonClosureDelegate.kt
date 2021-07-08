@@ -2,6 +2,8 @@ package kludge.common
 
 import com.google.auto.service.AutoService
 import kludge.api.ComposeContext
+import kludge.api.GROUP
+import kludge.api.VERSION
 import kludge.api.closure.BaseClosureDelegate
 
 /**

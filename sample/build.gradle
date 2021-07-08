@@ -25,8 +25,8 @@ dependencies {
     implementation KOTLIN_STDLIB
     implementation MATERIAL
     implementation CONSTRAINT_LAYOUT
+    implementation AUTO_SERVICE_ANNOTATION
 
-    implementation project(":kludge-api")
     implementation project(":kludge-common-module")
     implementation project(":kludge-router-lib")
     implementation project(":kludge-router-module")

@@ -4,7 +4,7 @@ apply plugin: "kotlin-kapt"
 dependencies {
     compileOnly gradleApi()
     compileOnly BUILD_GRADLE
-    api AUTO_SERVICE
+    implementation AUTO_SERVICE_ANNOTATION
     kapt AUTO_SERVICE
 }
 
@@ -12,3 +12,12 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 apply from: rootProject.file("gradle/scripts/publish.gradle")
+
+task createInfo() {
+    StringBuilder sb = new StringBuilder()
+        .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
+        .append("package kludge.api\n")
+        .append("const val GROUP = \"${project.group}\"\n")
+        .append("const val VERSION = \"${project.version}\"\n")
+    new File("${projectDir.path}/src/main/kotlin/kludge/api/Constant.kt").text = sb.toString()
+}
