@@ -28,6 +28,7 @@ dependencies {
     implementation AUTO_SERVICE_ANNOTATION
 
     implementation project(":kludge-common-module")
+    implementation project(":kludge-databus-module")
     implementation project(":kludge-router-lib")
     implementation project(":kludge-router-module")
     kapt project(":kludge-router-compile")

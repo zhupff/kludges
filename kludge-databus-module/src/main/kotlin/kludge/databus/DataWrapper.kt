@@ -90,7 +90,7 @@ internal class DataWrapper<T> : Data<T>() {
                 dispatchToReceiver(receiverWrapper)
             } else {
                 receivers.forEach {
-                    if (dispatchToReceiver(it.value)) {
+                    if (holdingData !== NONE && dispatchToReceiver(it.value)) {
                         holdingData = NONE
                         return@forEach
                     }
