@@ -2,11 +2,13 @@ package kludge.databus
 
 import com.google.auto.service.AutoService
 import kludge.api.ComposeContext
+import kludge.api.GROUP
+import kludge.api.VERSION
 import kludge.api.closure.BaseClosureDelegate
 
 /**
  * Author: Zhupf
- * Description: kludge-databus 相关模块gradle接入
+ * Description: kludge-databus 相关模块gradle接入。
  *
  * Composer.compose {
  *     databus {}

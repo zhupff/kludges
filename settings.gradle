@@ -1,11 +1,16 @@
 rootProject.name = "kludges"
 include ':sample'
 
-include ':kludge-gradle'
 include ':kludge-api'
+include ':kludge-gradle'
 
 include ':kludge-common-gradle'
 include ':kludge-common-module'
 
 include ':kludge-databus-gradle'
 include ':kludge-databus-module'
+
+include ':kludge-router-gradle'
+include ':kludge-router-compile'
+include ':kludge-router-lib'
+include ':kludge-router-module'
