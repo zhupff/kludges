@@ -4,6 +4,10 @@ include ':sample'
 include ':kludge-api'
 include ':kludge-gradle'
 
+//include ':kludge-auto-compile'
+//include ':kludge-auto-gradle'
+//include ':kludge-auto-lib'
+
 include ':kludge-common-gradle'
 include ':kludge-common-module'
 
