@@ -13,11 +13,16 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 apply from: rootProject.file("gradle/scripts/publish.gradle")
 
-task createInfo() {
+/**
+ * 同步gradle.properties中的常数到生成的Constant.kt中。
+ */
+task createConstant() {
     StringBuilder sb = new StringBuilder()
         .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
         .append("package kludge.api\n")
-        .append("const val GROUP = \"${project.group}\"\n")
-        .append("const val VERSION = \"${project.version}\"\n")
+        .append("const val GROUP = \"${GROUP}\"\n")
+        .append("const val VERSION = \"${VERSION}\"\n")
+        .append("const val AUTO_SERVICE_ANNOTATION = \"${AUTO_SERVICE_ANNOTATION}\"\n")
+        .append("const val AUTO_SERVICE = \"${AUTO_SERVICE}\"\n")
     new File("${projectDir.path}/src/main/kotlin/kludge/api/Constant.kt").text = sb.toString()
 }

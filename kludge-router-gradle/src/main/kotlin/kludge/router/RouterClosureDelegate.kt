@@ -25,11 +25,6 @@ class RouterClosureDelegate : BaseClosureDelegate() {
     var apt: String? = "kapt"
 
     override fun selfCheck(context: ComposeContext) {
-        apt = when (apt.lowerCase()) {
-            "annotationprocessor" -> "annotationProcessor"
-            "apt" -> "apt"
-            else -> "kapt"
-        }
         context.project.dependencies.add(apt!!, "$GROUP:kludge-router-compile:$VERSION")
         context.project.dependencies.add("implementation", "$GROUP:kludge-router-lib:$VERSION")
         context.project.dependencies.add("implementation", "$GROUP:kludge-router-module:$VERSION")
