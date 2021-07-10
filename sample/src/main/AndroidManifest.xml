@@ -7,15 +7,15 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/KludgeTheme">
-        <activity android:name=".databus.DataBusSampleActivity2"></activity>
-        <activity android:name=".databus.DataBusSampleActivity1" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".databus.DataBusSampleActivity1"/>
+        <activity android:name=".databus.DataBusSampleActivity2"/>
     </application>
 
 </manifest>

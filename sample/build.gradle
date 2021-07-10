@@ -29,6 +29,7 @@ dependencies {
 
     implementation project(":kludge-api")
     implementation project(":kludge-common-module")
+    implementation project(":kludge-databus-module")
     implementation project(":kludge-router-lib")
     implementation project(":kludge-router-module")
     kapt project(":kludge-router-compile")
