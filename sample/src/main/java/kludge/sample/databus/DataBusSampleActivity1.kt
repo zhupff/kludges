@@ -1,6 +1,5 @@
 package kludge.sample.databus
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import kludge.common.component.activity.BaseBindingActivity
@@ -8,9 +7,13 @@ import kludge.databus.DataBus
 import kludge.databus.LifecycleReceiver
 import kludge.databus.Receiver
 import kludge.databus.ReceiverRef
+import kludge.router.Route
+import kludge.router.Router
+import kludge.sample.DATABUS_SAMPLE_ACTIVITY1
 import kludge.sample.R
 import kludge.sample.databinding.DataBusSampleActivity1Binding
 
+@Route(route = DATABUS_SAMPLE_ACTIVITY1)
 class DataBusSampleActivity1 : BaseBindingActivity<DataBusSampleActivity1Binding>() {
 
     private var receiverRef1: ReceiverRef<String>? = null
@@ -42,7 +45,7 @@ class DataBusSampleActivity1 : BaseBindingActivity<DataBusSampleActivity1Binding
         setContentView()
 
         binding.toActivity2Button.setOnClickListener {
-            startActivity(Intent(this, DataBusSampleActivity2::class.java))
+            Router.from(this).to(DataBusSampleActivity2::class.java).jump()
         }
 
         // Init input layout.

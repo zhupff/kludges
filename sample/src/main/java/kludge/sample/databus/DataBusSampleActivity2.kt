@@ -3,9 +3,12 @@ package kludge.sample.databus
 import android.os.Bundle
 import kludge.common.component.activity.BaseBindingActivity
 import kludge.databus.DataBus
+import kludge.router.Route
+import kludge.sample.DATABUS_SAMPLE_ACTIVITY2
 import kludge.sample.R
 import kludge.sample.databinding.DataBusSampleActivity2Binding
 
+@Route(route = DATABUS_SAMPLE_ACTIVITY2)
 class DataBusSampleActivity2 : BaseBindingActivity<DataBusSampleActivity2Binding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

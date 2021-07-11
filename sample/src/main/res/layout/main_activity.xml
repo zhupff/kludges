@@ -11,16 +11,13 @@
         android:layout_height="match_parent"
         android:background="@color/color_main">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/to_data_bus_sample_activity1_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Welcome!"
-            android:textSize="40sp"
-            android:textStyle="bold"/>
+            android:text="DataBus"
+            android:textAllCaps="false"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
