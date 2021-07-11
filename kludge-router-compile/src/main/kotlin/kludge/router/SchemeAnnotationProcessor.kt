@@ -2,10 +2,7 @@ package kludge.router
 
 import com.google.auto.common.SuperficialValidation
 import com.google.auto.service.AutoService
-import com.squareup.javapoet.AnnotationSpec
-import com.squareup.javapoet.JavaFile
-import com.squareup.javapoet.MethodSpec
-import com.squareup.javapoet.TypeSpec
+import com.squareup.javapoet.*
 import kludge.api.apt.BaseAnnotationProcessor
 import kludge.api.common.Logln
 import kludge.api.common.i
@@ -17,48 +14,36 @@ import javax.lang.model.element.TypeElement
 
 /**
  * Author: Zhupf
- * Description: [Route] 注解处理器。
+ * Description: [Scheme]注解处理器。
  */
 @AutoService(Processor::class)
-class RouteAnnotationProcessor : BaseAnnotationProcessor() {
+class SchemeAnnotationProcessor : BaseAnnotationProcessor() {
 
-    override fun getSupportAnnotation(): Set<Class<*>> = setOf(Route::class.java)
+    override fun getSupportAnnotation(): Set<Class<*>> = setOf(Scheme::class.java)
 
     override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment?): Boolean {
         if (annotations.isNullOrEmpty() || roundEnv == null) {
             return false
         }
-        roundEnv.getElementsAnnotatedWith(Route::class.java)
+        roundEnv.getElementsAnnotatedWith(Scheme::class.java)
             .filter { SuperficialValidation.validateElement(it) }
-            .forEach { generateRouteRegister(it) }
+            .forEach { generateSchemeParser(it) }
         return true
     }
 
-    private fun generateRouteRegister(element: Element) {
+    private fun generateSchemeParser(element: Element) {
         val classPath = processingEnv.elementUtils.getPackageOf(element).qualifiedName.toString()
         val className = element.simpleName
-        val spec = TypeSpec.classBuilder("${className}_${RouteProvider::class.java.simpleName}")
-            .addSuperinterface(RouteProvider::class.java)
+        val spec = TypeSpec.classBuilder("${className}_${SchemeParserProvider::class.java.simpleName}")
             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+            .addSuperinterface(SchemeParserProvider::class.java)
             .addAnnotation(AnnotationSpec.builder(AutoService::class.java)
-                .addMember("value", "${RouteProvider::class.java.name}.class")
+                .addMember("value", "${SchemeParserProvider::class.java.name}.class")
                 .build())
-            .addMethod(MethodSpec.methodBuilder("getRoute")
+            .addMethod(MethodSpec.methodBuilder("getSchemeParser")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override::class.java)
-                .returns(String::class.java)
-                .addStatement("return \"${element.getAnnotation(Route::class.java).route}\"")
-                .build())
-            .addMethod(MethodSpec.methodBuilder("getPath")
-                .addModifiers(Modifier.PUBLIC)
-                .addAnnotation(Override::class.java)
-                .returns(String::class.java)
-                .addStatement("return ${className}.class.getName()")
-                .build())
-            .addMethod(MethodSpec.methodBuilder("newInstance")
-                .addModifiers(Modifier.PUBLIC)
-                .addAnnotation(Override::class.java)
-                .returns(Any::class.java)
+                .returns(SchemeParser::class.java)
                 .addStatement("return new ${className}()")
                 .build())
             .build()

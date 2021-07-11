@@ -27,7 +27,6 @@ dependencies {
     implementation CONSTRAINT_LAYOUT
     implementation AUTO_SERVICE_ANNOTATION
 
-    implementation project(":kludge-api")
     implementation project(":kludge-common-module")
     implementation project(":kludge-databus-module")
     implementation project(":kludge-router-lib")
