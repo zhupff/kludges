@@ -7,6 +7,44 @@ package kludge.router
  */
 @Scheme
 abstract class SchemeParser {
+    companion object {
+        /**
+         * 解析link的scheme部分。
+         */
+        fun parseScheme(link: String): String {
+            return if (link.contains("//"))
+                link.substringBefore("://")
+            else ""
+        }
+
+        /**
+         * 解析link的route部分。
+         */
+        fun parseRoute(link: String): String {
+            var route = link
+            if (route.contains("://"))
+                route = route.substringAfter("//")
+            if (route.contains("?"))
+                route = route.substringBefore("?")
+            return route
+        }
+        /**
+         * 解析link的k=v部分。
+         */
+        fun parseParameter(link: String): Map<String, String> {
+            val map = HashMap<String, String>(0)
+            var parameters = link
+            if (parameters.contains("?"))
+                parameters = link.substringAfter("?")
+            parameters.split("&").map{
+                val kv = it.split("=")
+                kv[0] to kv[1]
+            }.forEach {
+                map[it.first] = it.second
+            }
+            return map
+        }
+    }
 
     /**
      * 获取匹配的协议。
@@ -21,5 +59,5 @@ abstract class SchemeParser {
     /**
      * 解析。
      */
-    abstract fun parse()
+    abstract fun parse(link: String)
 }

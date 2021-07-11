@@ -28,6 +28,13 @@ object Router {
     @JvmStatic
     fun from(context: Context, intent: Intent): RouteTask = RouteTask(context, intent)
 
+    @JvmStatic
+    fun parse(link: String) {
+        val scheme = SchemeParser.parseScheme(link)
+        val route = SchemeParser.parseRoute(link)
+        RouteTable.getSchemeParserProvider(scheme, route)?.getSchemeParser()?.parse(link)
+    }
+
     /**
      * 获取路由目标的实例，后续请自行转型。
      */
