@@ -18,11 +18,11 @@ apply from: rootProject.file("gradle/scripts/publish.gradle")
  */
 task createConstant() {
     StringBuilder sb = new StringBuilder()
-        .append("/** Do Not Modify! This File Is Generated Automatically! **/\n")
-        .append("package kludge.api\n")
-        .append("const val GROUP = \"${GROUP}\"\n")
-        .append("const val VERSION = \"${VERSION}\"\n")
-        .append("const val AUTO_SERVICE_ANNOTATION = \"${AUTO_SERVICE_ANNOTATION}\"\n")
-        .append("const val AUTO_SERVICE = \"${AUTO_SERVICE}\"\n")
+        .append("/** Do Not Modify! This File Is Generated Automatically! **/\r\n")
+        .append("package kludge.api\r\n")
+        .append("const val GROUP = \"${GROUP}\"\r\n")
+        .append("const val VERSION = \"${VERSION}\"\r\n")
+        .append("const val AUTO_SERVICE_ANNOTATION = \"${AUTO_SERVICE_ANNOTATION}\"\r\n")
+        .append("const val AUTO_SERVICE = \"${AUTO_SERVICE}\"\r\n")
     new File("${projectDir.path}/src/main/kotlin/kludge/api/Constant.kt").text = sb.toString()
 }
